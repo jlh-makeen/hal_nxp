@@ -276,6 +276,12 @@ static inline void UART_SetDirMode(UART_Type* base, uint32_t direction)
     UART_UCR2_REG(base) = (UART_UCR2_REG(base) & ~(UART_UCR2_RXEN_MASK | UART_UCR2_TXEN_MASK)) | direction;
 }
 
+static inline uint32_t UART_GetDirMode(UART_Type* base)
+{
+    return (UART_UCR2_REG(base) & (UART_UCR2_RXEN_MASK | UART_UCR2_TXEN_MASK));
+}
+
+
 /*!
  * @brief This function is used to set the number of frames RXD is allowed to
  *        be idle before an idle condition is reported. The available condition
@@ -379,6 +385,18 @@ static inline uint8_t UART_Getchar(UART_Type* base)
  *               - false: Disable corresponding interrupt.
  */
 void UART_SetIntCmd(UART_Type* base, uint32_t intSource, bool enable);
+/*!
+ * @brief This function is used to set the enable condition of
+ *        specific UART interrupt source. The available interrupt
+ *        source can be select from @ref _uart_interrupt enumeration.
+ *
+ * @param base UART base pointer.
+ * @param intSource Available interrupt source for this module.
+ * @param enable Enable/Disable corresponding interrupt.
+ *               - true: Enable corresponding interrupt.
+ *               - false: Disable corresponding interrupt.
+ */
+bool UART_GetIntCmd(UART_Type* base, uint32_t intSource);
 
 /*!
  * @brief This function is used to get the current status of specific
