@@ -269,6 +269,17 @@ void UART_SetIntCmd(UART_Type* base, uint32_t intSource, bool enable)
         *uart_reg &= ~uart_mask;
 }
 
+bool UART_GetIntCmd(UART_Type* base, uint32_t intSource)
+{
+    volatile uint32_t* uart_reg = 0;
+    uint32_t uart_mask = 0;
+
+    uart_reg = (uint32_t *)((uint32_t)base + (intSource >> 16));
+    uart_mask = (1 << (intSource & 0x0000FFFF));
+
+    return (*uart_reg & uart_mask) ? true : false;
+}
+
 /*FUNCTION**********************************************************************
  *
  * Function Name : UART_GetStatusFlag
