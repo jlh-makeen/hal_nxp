@@ -356,6 +356,7 @@ extern "C" {
  */
 static inline void CCM_SetRootMux(CCM_Type * base, uint32_t ccmRoot, uint32_t mux)
 {
+    (void)base;
     CCM_REG(ccmRoot) = (CCM_REG(ccmRoot) & (~CCM_TARGET_ROOT_MUX_MASK)) |
                               CCM_TARGET_ROOT_MUX(mux);
 }
@@ -369,6 +370,7 @@ static inline void CCM_SetRootMux(CCM_Type * base, uint32_t ccmRoot, uint32_t mu
  */
 static inline uint32_t CCM_GetRootMux(CCM_Type * base, uint32_t ccmRoot)
 {
+    (void)base;
     return (CCM_REG(ccmRoot) & CCM_TARGET_ROOT_MUX_MASK) >> CCM_TARGET_ROOT_MUX_SHIFT;
 }
 
@@ -380,6 +382,7 @@ static inline uint32_t CCM_GetRootMux(CCM_Type * base, uint32_t ccmRoot)
  */
 static inline void CCM_EnableRoot(CCM_Type * base, uint32_t ccmRoot)
 {
+    (void)base;
     CCM_REG_SET(ccmRoot) = CCM_TARGET_ROOT_SET_ENABLE_MASK;
 }
 
@@ -391,6 +394,7 @@ static inline void CCM_EnableRoot(CCM_Type * base, uint32_t ccmRoot)
  */
 static inline void CCM_DisableRoot(CCM_Type * base, uint32_t ccmRoot)
 {
+    (void)base;
     CCM_REG_CLR(ccmRoot) = CCM_TARGET_ROOT_CLR_ENABLE_MASK;
 }
 
@@ -405,6 +409,7 @@ static inline void CCM_DisableRoot(CCM_Type * base, uint32_t ccmRoot)
  */
 static inline bool CCM_IsRootEnabled(CCM_Type * base, uint32_t ccmRoot)
 {
+    (void)base;
     return (bool)(CCM_REG(ccmRoot) & CCM_TARGET_ROOT_ENABLE_MASK);
 }
 
@@ -455,6 +460,7 @@ void CCM_UpdateRoot(CCM_Type * base, uint32_t ccmRoot, uint32_t mux, uint32_t pr
  */
 static inline void CCM_ControlGate(CCM_Type * base, uint32_t ccmGate, uint32_t control)
 {
+    (void)base;
     CCM_REG(ccmGate) = control;
 }
 
